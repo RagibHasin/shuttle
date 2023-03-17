@@ -1,7 +1,8 @@
 use cargo_shuttle::{Args, Command, ProjectArgs, RunArgs, Shuttle};
+use dunce::canonicalize;
 use portpicker::pick_unused_port;
 use reqwest::StatusCode;
-use std::{fs::canonicalize, process::exit, time::Duration};
+use std::{process::exit, time::Duration};
 use tokio::time::sleep;
 
 /// creates a `cargo-shuttle` run instance with some reasonable defaults set.

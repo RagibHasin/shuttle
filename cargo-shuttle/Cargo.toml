@@ -52,6 +52,7 @@ tracing-subscriber = { workspace = true, features = ["env-filter"] }
 url = "2.3.1"
 uuid = { workspace = true, features = ["v4"] }
 webbrowser = "0.8.2"
+dunce = "1.0.3"
 
 [dependencies.shuttle-common]
 workspace = true

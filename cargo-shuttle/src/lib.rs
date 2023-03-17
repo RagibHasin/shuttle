@@ -711,10 +711,10 @@ impl Shuttle {
     fn is_dirty(&self) -> Result<()> {
         let working_directory = self.ctx.working_directory();
         if let Ok(repo) = Repository::discover(working_directory) {
-            let repo_path = repo
-                .workdir()
-                .context("getting working directory of repository")?
-                .canonicalize()?;
+            let repo_path = dunce::canonicalize(
+                repo.workdir()
+                    .context("getting working directory of repository")?,
+            )?;
 
             trace!(?repo_path, "found git repository");
 
@@ -799,6 +799,7 @@ pub enum CommandOutcome {
 
 #[cfg(test)]
 mod tests {
+    use dunce::canonicalize;
     use flate2::read::GzDecoder;
     use shuttle_common::project::ProjectName;
     use tar::Archive;
@@ -806,7 +807,7 @@ mod tests {
 
     use crate::args::ProjectArgs;
     use crate::Shuttle;
-    use std::fs::{self, canonicalize};
+    use std::fs;
     use std::path::PathBuf;
     use std::str::FromStr;
 

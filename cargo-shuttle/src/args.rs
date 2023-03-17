@@ -1,6 +1,6 @@
 use std::{
     ffi::OsString,
-    fs::{canonicalize, create_dir_all},
+    fs::create_dir_all,
     io::{self, ErrorKind},
     path::PathBuf,
 };
@@ -8,6 +8,7 @@ use std::{
 use clap::builder::{OsStringValueParser, PossibleValue, TypedValueParser};
 use clap::Parser;
 use clap_complete::Shell;
+use dunce::canonicalize;
 use shuttle_common::{models::project::IDLE_MINUTES, project::ProjectName};
 use uuid::Uuid;
 
